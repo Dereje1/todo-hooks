@@ -1,11 +1,12 @@
 import './App.css';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import taskListStub from './taskliststub';
 /* MUI */
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -13,10 +14,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Checkbox from '@mui/material/Checkbox';
 
 function Row(props) {
-  const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const { row, onCompleteTask } = props;
+  const [open, setOpen] = useState(false);
   return (
     <Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -32,10 +34,17 @@ function Row(props) {
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
-        {/* <TableCell align="right">{row.calories}</TableCell>
-        <TableCell align="right">{row.fat}</TableCell>
-        <TableCell align="right">{row.carbs}</TableCell>
-        <TableCell align="right">{row.protein}</TableCell> */}
+        <TableCell padding="checkbox" align='center'>
+          <Checkbox
+            color="primary"
+            checked={row.completed}
+            onChange={onCompleteTask}
+            inputProps={{
+              'aria-label': 'mark complete',
+            }}
+            id={row.id}
+          />
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -50,16 +59,40 @@ function Row(props) {
   );
 }
 
-const App = () => (
-  <TableContainer component={Paper}>
-    <Table aria-label="collapsible table">
-      <TableBody>
-        {taskListStub.map((row) => (
-          <Row key={row.name} row={row} />
-        ))}
-      </TableBody>
-    </Table>
-  </TableContainer>
-)
+const App = () => {
+  const [tasks, setTasks] = useState(taskListStub);
+  const handleTaskCompletion = ({ target: { id } }) => {
+    const updatedTasks = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          completed: !task.completed
+        }
+      }
+      return task
+    })
+    setTasks(updatedTasks);
+  }
+  return (
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell />
+            <TableCell >Completed</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tasks.map((task) => (
+            <Row key={task.name} row={task} onCompleteTask={handleTaskCompletion} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
+}
+
+
 
 export default App;
