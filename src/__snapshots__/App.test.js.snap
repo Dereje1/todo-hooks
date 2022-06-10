@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders table 1`] = `
+<ForwardRef(TableContainer)
+  component={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "propTypes": Object {
+        "children": [Function],
+        "className": [Function],
+        "classes": [Function],
+        "component": [Function],
+        "elevation": [Function],
+        "square": [Function],
+        "sx": [Function],
+        "variant": [Function],
+      },
+      "render": [Function],
+    }
+  }
+  sx={
+    Object {
+      "maxWidth": 1000,
+    }
+  }
+>
+  <ForwardRef(Table)
+    aria-label="collapsible table"
+  >
+    <ForwardRef(TableHead)>
+      <ForwardRef(TableRow)>
+        <ForwardRef(TableCell) />
+        <ForwardRef(TableCell) />
+        <ForwardRef(TableCell)>
+          Completed
+        </ForwardRef(TableCell)>
+      </ForwardRef(TableRow)>
+    </ForwardRef(TableHead)>
+    <ForwardRef(TableBody)>
+      <Row
+        key="Task 1"
+        onCompleteTask={[Function]}
+        row={
+          Object {
+            "completed": false,
+            "description": "This is task # 1",
+            "id": "1",
+            "name": "Task 1",
+          }
+        }
+      />
+      <Row
+        key="Task 2"
+        onCompleteTask={[Function]}
+        row={
+          Object {
+            "completed": false,
+            "description": "This is task # 2",
+            "id": "2",
+            "name": "Task 2",
+          }
+        }
+      />
+      <Row
+        key="Task 3"
+        onCompleteTask={[Function]}
+        row={
+          Object {
+            "completed": false,
+            "description": "This is task # 3",
+            "id": "3",
+            "name": "Task 3",
+          }
+        }
+      />
+    </ForwardRef(TableBody)>
+  </ForwardRef(Table)>
+</ForwardRef(TableContainer)>
+`;
+
+exports[`rows renders row 1`] = `
+<Fragment>
+  <ForwardRef(TableRow)
+    sx={
+      Object {
+        "& > *": Object {
+          "borderBottom": "unset",
+        },
+      }
+    }
+  >
+    <ForwardRef(TableCell)>
+      <ForwardRef(IconButton)
+        aria-label="expand row"
+        onClick={[Function]}
+        size="small"
+      >
+        <Memo(ForwardRef(KeyboardArrowDownIcon)) />
+      </ForwardRef(IconButton)>
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      component="th"
+      scope="row"
+    >
+      Task 1
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(Checkbox)
+        checked={false}
+        color="primary"
+        id="1"
+        inputProps={
+          Object {
+            "aria-label": "mark complete",
+          }
+        }
+        onChange={[MockFunction]}
+      />
+    </ForwardRef(TableCell)>
+  </ForwardRef(TableRow)>
+  <ForwardRef(TableRow)>
+    <ForwardRef(TableCell)
+      colSpan={6}
+      style={
+        Object {
+          "paddingBottom": 0,
+          "paddingTop": 0,
+        }
+      }
+    >
+      <ForwardRef(Collapse)
+        in={false}
+        timeout="auto"
+        unmountOnExit={true}
+      >
+        <ForwardRef(Box)
+          sx={
+            Object {
+              "margin": 1,
+            }
+          }
+        >
+          This is task # 1
+        </ForwardRef(Box)>
+      </ForwardRef(Collapse)>
+    </ForwardRef(TableCell)>
+  </ForwardRef(TableRow)>
+</Fragment>
+`;

@@ -16,7 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Checkbox from '@mui/material/Checkbox';
 
-function Row(props) {
+export const Row = (props) => {
   const { row, onCompleteTask } = props;
   const [open, setOpen] = useState(false);
   return (
@@ -73,8 +73,9 @@ const App = () => {
     })
     setTasks(updatedTasks);
   }
+  
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ maxWidth: 1000, margin:'0 auto' }}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
