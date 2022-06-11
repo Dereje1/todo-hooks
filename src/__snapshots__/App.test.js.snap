@@ -28,6 +28,7 @@ exports[`App renders table 1`] = `
         <ForwardRef(IconButton)
           id="add-task"
           onClick={[Function]}
+          variant="outlined"
         >
           <Memo(ForwardRef(AddIcon)) />
         </ForwardRef(IconButton)>
@@ -102,6 +103,9 @@ exports[`App renders table 1`] = `
           <ForwardRef(TableCell) />
           <ForwardRef(TableCell) />
           <ForwardRef(TableCell)>
+            Edit
+          </ForwardRef(TableCell)>
+          <ForwardRef(TableCell)>
             Completed
           </ForwardRef(TableCell)>
           <ForwardRef(TableCell)>
@@ -114,6 +118,7 @@ exports[`App renders table 1`] = `
           key="1"
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
+          onEditTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -127,6 +132,7 @@ exports[`App renders table 1`] = `
           key="2"
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
+          onEditTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -140,6 +146,7 @@ exports[`App renders table 1`] = `
           key="3"
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
+          onEditTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -180,6 +187,24 @@ exports[`rows renders row 1`] = `
       scope="row"
     >
       Task 1
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(IconButton)
+        id="edit-task"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(EditIcon))
+          color="success"
+          sx={
+            Object {
+              "fontSize": "1.3em",
+            }
+          }
+        />
+      </ForwardRef(IconButton)>
     </ForwardRef(TableCell)>
     <ForwardRef(TableCell)
       align="center"

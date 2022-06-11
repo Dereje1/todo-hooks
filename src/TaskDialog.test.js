@@ -7,6 +7,7 @@ const props = {
     open: true,
     handleCancel: jest.fn(),
     handleOk: jest.fn(),
+    editableTask: null
 }
 
 test('will render', () => {
@@ -16,29 +17,51 @@ test('will render', () => {
 
 test('will control the name field', () => {
     const wrapper = shallow(<TaskDialog {...props} />)
-    let nameField = wrapper.find({id: 'name'})
+    let nameField = wrapper.find({ id: 'name' })
     expect(nameField.props().value).toBe('')
-    nameField.props().onChange({target:{value:'stub-name'}})
-    nameField = wrapper.find({id: 'name'})
+    nameField.props().onChange({ target: { value: 'stub-name' } })
+    nameField = wrapper.find({ id: 'name' })
     expect(nameField.props().value).toBe('stub-name')
 })
 
 test('will control the description field', () => {
     const wrapper = shallow(<TaskDialog {...props} />)
-    let descriptionField = wrapper.find({id: 'description'})
+    let descriptionField = wrapper.find({ id: 'description' })
     expect(descriptionField.props().value).toBe('')
-    descriptionField.props().onChange({target:{value:'stub-description'}})
-    descriptionField = wrapper.find({id: 'description'})
+    descriptionField.props().onChange({ target: { value: 'stub-description' } })
+    descriptionField = wrapper.find({ id: 'description' })
     expect(descriptionField.props().value).toBe('stub-description')
 })
 
-test('will send field values to parent on Ok click', () => {
+test('will send field values to parent on Ok click to Add a task', () => {
     const wrapper = shallow(<TaskDialog {...props} />)
-    let nameField = wrapper.find({id: 'name'})
-    let descriptionField = wrapper.find({id: 'description'})
-    nameField.props().onChange({target:{value:'stub-name'}})
-    descriptionField.props().onChange({target:{value:'stub-description'}})
+    let nameField = wrapper.find({ id: 'name' })
+    let descriptionField = wrapper.find({ id: 'description' })
+    nameField.props().onChange({ target: { value: 'stub-name' } })
+    descriptionField.props().onChange({ target: { value: 'stub-description' } })
     const okButton = wrapper.find('ForwardRef(Button)').at(1)
     okButton.props().onClick();
-    expect(props.handleOk).toHaveBeenCalledWith({"description": "stub-description", "name": "stub-name"})
+    expect(props.handleOk).toHaveBeenCalledWith({ "description": "stub-description", "name": "stub-name" }, null)
+})
+
+test('will send field values to parent on Ok click to modify a task', () => {
+    const updatedProps = {
+        ...props,
+        editableTask: {
+            "description": "stub-editable-description",
+            "name": "stub-editable- name",
+            id: "1"
+        }
+    }
+    const wrapper = shallow(<TaskDialog {...updatedProps} />)
+    let nameField = wrapper.find({ id: 'name' })
+    let descriptionField = wrapper.find({ id: 'description' })
+    nameField.props().onChange({ target: { value: 'stub-edited-name' } })
+    descriptionField.props().onChange({ target: { value: 'stub-edited-description' } })
+    const okButton = wrapper.find('ForwardRef(Button)').at(1)
+    okButton.props().onClick();
+    expect(props.handleOk).toHaveBeenCalledWith(
+        { "description": "stub-edited-description", "name": "stub-edited-name" }, 
+        { "description": "stub-editable-description","name": "stub-editable- name",id: "1"}
+    )
 })

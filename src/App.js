@@ -23,9 +23,14 @@ import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
 
-export const Row = (props) => {
-  const { row, onCompleteTask, onDeleteTask } = props;
+export const Row = ({
+  row,
+  onCompleteTask,
+  onDeleteTask,
+  onEditTask
+}) => {
   const [open, setOpen] = useState(false);
   return (
     <Fragment>
@@ -41,6 +46,11 @@ export const Row = (props) => {
         </TableCell>
         <TableCell component="th" scope="row" >
           {row.name}
+        </TableCell>
+        <TableCell padding="checkbox" align='center'>
+          <IconButton id="edit-task" onClick={() => onEditTask(row.id)}>
+            <EditIcon color='success' sx={{ fontSize: '1.3em' }} />
+          </IconButton>
         </TableCell>
         <TableCell padding="checkbox" align='center'>
           <Checkbox
@@ -76,6 +86,7 @@ const App = () => {
   const [tasks, setTasks] = useState(taskListStub);
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
   const [filterSetting, setFilterSetting] = useState('all');
+  const [editableTask, setEditableTask] = useState(null);
 
   const handleTaskCompletion = ({ target: { id } }) => {
     const updatedTasks = tasks.map(task => {
@@ -90,18 +101,39 @@ const App = () => {
     setTasks(updatedTasks);
   }
 
-  const handleTaskAdd = (val) => {
-    const updatedTasks = [...tasks, {
-      ...val,
-      id: Date.now().toString()
-    }]
+  const handleTaskAddOrEdit = (val, editableTask) => {
+    let updatedTasks;
+    if (editableTask) {
+      const indexToUpdate = tasks.findIndex(task => task.id === editableTask.id)
+      updatedTasks = [
+        ...tasks.slice(0, indexToUpdate),
+        {
+          ...editableTask,
+          name: val.name,
+          description: val.description
+        },
+        ...tasks.slice(indexToUpdate + 1)
+      ]
+    } else {
+      updatedTasks = [...tasks, {
+        ...val,
+        id: Date.now().toString()
+      }]
+    }
     setTasks(updatedTasks)
     setOpenTaskDialog(false)
+    setEditableTask(null)
   }
 
   const handleTaskDeletion = (taskId) => {
     const updatedTasks = tasks.filter(task => task.id !== taskId)
     setTasks(updatedTasks)
+  }
+
+  const handleTaskEdit = (taskId) => {
+    const [taskToEdit] = tasks.filter(task => task.id === taskId)
+    setEditableTask(taskToEdit)
+    setOpenTaskDialog(true)
   }
 
   const filterdTasks = () => {
@@ -129,7 +161,7 @@ const App = () => {
       >
         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
           <Tooltip title="Add a task">
-            <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)}>
+            <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)} variant="outlined">
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -160,13 +192,20 @@ const App = () => {
               <TableRow>
                 <TableCell />
                 <TableCell />
+                <TableCell >Edit</TableCell>
                 <TableCell >Completed</TableCell>
                 <TableCell >Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filterdTasks().map((task) => (
-                <Row key={task.id} row={task} onCompleteTask={handleTaskCompletion} onDeleteTask={handleTaskDeletion} />
+                <Row
+                  key={task.id}
+                  row={task}
+                  onEditTask={handleTaskEdit}
+                  onCompleteTask={handleTaskCompletion}
+                  onDeleteTask={handleTaskDeletion}
+                />
               ))}
             </TableBody>
           </Table>
@@ -176,8 +215,12 @@ const App = () => {
       }
       {openTaskDialog && <TaskDialog
         open={openTaskDialog}
-        handleCancel={() => setOpenTaskDialog(false)}
-        handleOk={handleTaskAdd}
+        handleCancel={() => {
+          setOpenTaskDialog(false)
+          setEditableTask(null)
+        }}
+        handleOk={handleTaskAddOrEdit}
+        editableTask={editableTask}
       />}
     </>
   )

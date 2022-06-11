@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,19 +11,22 @@ const TaskDialog = ({
     open,
     handleCancel,
     handleOk,
+    editableTask
 }) => {
-    const [name, setTaskName] = useState('');
-    const [description, setTaskDescription] = useState('');
+    const [name, setTaskName] = useState(editableTask ? editableTask.name : '');
+    const [description, setTaskDescription] = useState(editableTask ? editableTask.description : '');
     return (
         <Dialog
             sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 530 } }}
             maxWidth="xs"
             open={open}
         >
-            <DialogTitle>Add a Task</DialogTitle>
+            <DialogTitle>{editableTask ? `Edit- ${editableTask.name.slice(0,15)}...` : 'Add a Task'}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    To add a new TODO, please add a name and a description.
+                    {
+                        editableTask ? '' : 'To add a new TODO, please add a name and a description.'
+                    }
                 </DialogContentText>
                 <TextField
                     autoFocus
@@ -52,7 +55,7 @@ const TaskDialog = ({
                 <Button autoFocus onClick={handleCancel}>
                     Cancel
                 </Button>
-                <Button onClick={() => handleOk({ name, description })}>Ok</Button>
+                <Button onClick={() => handleOk({ name, description }, editableTask)}>Ok</Button>
             </DialogActions>
         </Dialog>
     )

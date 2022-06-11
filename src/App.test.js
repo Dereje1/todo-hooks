@@ -40,7 +40,7 @@ describe('App', () => {
     const addTaskButton = wrapper.find({ id: "add-task" })
     addTaskButton.props().onClick()
     let taskDialog = wrapper.find('TaskDialog')
-    taskDialog.props().handleOk({ name: 'stub task', description: 'stub description' })
+    taskDialog.props().handleOk({ name: 'stub task', description: 'stub description' }, null)
     const rows = wrapper.find('Row')
     const newTask = rows.at(3)
     expect(rows.length).toBe(4);
@@ -57,6 +57,20 @@ describe('App', () => {
     row.props().onDeleteTask("2");
     row = wrapper.find('Row').at(1)
     expect(row.props().row.id).toBe("3");
+  })
+  test('Will edit a task', () => {
+    const wrapper = shallow(<App />);
+    const editTaskButton = wrapper.find('Row').at(1)
+    editTaskButton.props().onEditTask()
+    let taskDialog = wrapper.find('TaskDialog')
+    taskDialog.props().handleOk({ name: 'stub-edited-task', description: 'stub-edited-description' }, {id: '2'})
+    const rows = wrapper.find('Row')
+    const editedTask = rows.at(1)
+    expect(editedTask.props().row).toStrictEqual({
+      name: 'stub-edited-task',
+      description: 'stub-edited-description',
+      id: "2"
+    })
   })
   test('Will filter completed tasks', () => {
     const wrapper = shallow(<App />);
