@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`will render 1`] = `
+<ForwardRef(Dialog)
+  maxWidth="xs"
+  open={true}
+  sx={
+    Object {
+      "& .MuiDialog-paper": Object {
+        "maxHeight": 530,
+        "width": "80%",
+      },
+    }
+  }
+>
+  <ForwardRef(DialogTitle)>
+    Add a Task
+  </ForwardRef(DialogTitle)>
+  <ForwardRef(DialogContent)>
+    <ForwardRef(DialogContentText)>
+      To add a new TODO, please add a name and a description.
+    </ForwardRef(DialogContentText)>
+    <ForwardRef(TextField)
+      autoFocus={true}
+      fullWidth={true}
+      id="name"
+      label="Name"
+      margin="dense"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="standard"
+    />
+    <ForwardRef(TextField)
+      autoFocus={true}
+      fullWidth={true}
+      id="description"
+      label="Description"
+      margin="dense"
+      onChange={[Function]}
+      type="text"
+      value=""
+      variant="standard"
+    />
+  </ForwardRef(DialogContent)>
+  <ForwardRef(DialogActions)>
+    <ForwardRef(Button)
+      autoFocus={true}
+      onClick={[MockFunction]}
+    >
+      Cancel
+    </ForwardRef(Button)>
+    <ForwardRef(Button)
+      onClick={[Function]}
+    >
+      Ok
+    </ForwardRef(Button)>
+  </ForwardRef(DialogActions)>
+</ForwardRef(Dialog)>
+`;

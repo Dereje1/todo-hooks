@@ -1,81 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders table 1`] = `
-<ForwardRef(TableContainer)
-  component={
-    Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "propTypes": Object {
-        "children": [Function],
-        "className": [Function],
-        "classes": [Function],
-        "component": [Function],
-        "elevation": [Function],
-        "square": [Function],
-        "sx": [Function],
-        "variant": [Function],
-      },
-      "render": [Function],
+<Fragment>
+  <div
+    id="button-group-container"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "center",
+        "marginBottom": 10,
+        "marginTop": 10,
+      }
     }
-  }
-  sx={
-    Object {
-      "maxWidth": 1000,
-    }
-  }
->
-  <ForwardRef(Table)
-    aria-label="collapsible table"
   >
-    <ForwardRef(TableHead)>
-      <ForwardRef(TableRow)>
-        <ForwardRef(TableCell) />
-        <ForwardRef(TableCell) />
-        <ForwardRef(TableCell)>
-          Completed
-        </ForwardRef(TableCell)>
-      </ForwardRef(TableRow)>
-    </ForwardRef(TableHead)>
-    <ForwardRef(TableBody)>
-      <Row
-        key="Task 1"
-        onCompleteTask={[Function]}
-        row={
-          Object {
-            "completed": false,
-            "description": "This is task # 1",
-            "id": "1",
-            "name": "Task 1",
-          }
+    <ForwardRef(ButtonGroup)
+      aria-label="outlined primary button group"
+      sx={
+        Object {
+          "padding": 1,
         }
-      />
-      <Row
-        key="Task 2"
-        onCompleteTask={[Function]}
-        row={
-          Object {
-            "completed": false,
-            "description": "This is task # 2",
-            "id": "2",
-            "name": "Task 2",
+      }
+      variant="contained"
+    >
+      <ForwardRef(IconButton)
+        id="add-task"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(AddIcon)) />
+      </ForwardRef(IconButton)>
+      <ForwardRef(IconButton)
+        id="completed-tasks"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(CheckIcon)) />
+      </ForwardRef(IconButton)>
+      <ForwardRef(IconButton)
+        id="all-tasks"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(AllInclusiveIcon)) />
+      </ForwardRef(IconButton)>
+    </ForwardRef(ButtonGroup)>
+  </div>
+  <ForwardRef(TableContainer)
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "propTypes": Object {
+          "children": [Function],
+          "className": [Function],
+          "classes": [Function],
+          "component": [Function],
+          "elevation": [Function],
+          "square": [Function],
+          "sx": [Function],
+          "variant": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    sx={
+      Object {
+        "margin": "0 auto",
+        "maxWidth": 1000,
+      }
+    }
+  >
+    <ForwardRef(Table)
+      aria-label="collapsible table"
+    >
+      <ForwardRef(TableHead)>
+        <ForwardRef(TableRow)>
+          <ForwardRef(TableCell) />
+          <ForwardRef(TableCell) />
+          <ForwardRef(TableCell)>
+            Completed
+          </ForwardRef(TableCell)>
+        </ForwardRef(TableRow)>
+      </ForwardRef(TableHead)>
+      <ForwardRef(TableBody)>
+        <Row
+          key="1"
+          onCompleteTask={[Function]}
+          row={
+            Object {
+              "completed": false,
+              "description": "This is task # 1",
+              "id": "1",
+              "name": "Task 1",
+            }
           }
-        }
-      />
-      <Row
-        key="Task 3"
-        onCompleteTask={[Function]}
-        row={
-          Object {
-            "completed": false,
-            "description": "This is task # 3",
-            "id": "3",
-            "name": "Task 3",
+        />
+        <Row
+          key="2"
+          onCompleteTask={[Function]}
+          row={
+            Object {
+              "completed": false,
+              "description": "This is task # 2",
+              "id": "2",
+              "name": "Task 2",
+            }
           }
-        }
-      />
-    </ForwardRef(TableBody)>
-  </ForwardRef(Table)>
-</ForwardRef(TableContainer)>
+        />
+        <Row
+          key="3"
+          onCompleteTask={[Function]}
+          row={
+            Object {
+              "completed": false,
+              "description": "This is task # 3",
+              "id": "3",
+              "name": "Task 3",
+            }
+          }
+        />
+      </ForwardRef(TableBody)>
+    </ForwardRef(Table)>
+  </ForwardRef(TableContainer)>
+</Fragment>
 `;
 
 exports[`rows renders row 1`] = `
