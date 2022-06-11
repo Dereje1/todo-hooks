@@ -21,6 +21,8 @@ import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
+import Tooltip from '@mui/material/Tooltip';
 
 export const Row = (props) => {
   const { row, onCompleteTask, onDeleteTask } = props;
@@ -53,7 +55,7 @@ export const Row = (props) => {
         </TableCell>
         <TableCell padding="checkbox" align='center'>
           <IconButton id="delete-task" onClick={() => onDeleteTask(row.id)}>
-            <DeleteForeverIcon color='error' sx={{fontSize: '1.3em'}}/>
+            <DeleteForeverIcon color='error' sx={{ fontSize: '1.3em' }} />
           </IconButton>
         </TableCell>
       </TableRow>
@@ -73,6 +75,7 @@ export const Row = (props) => {
 const App = () => {
   const [tasks, setTasks] = useState(taskListStub);
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
+  const [filterSetting, setFilterSetting] = useState('all');
 
   const handleTaskCompletion = ({ target: { id } }) => {
     const updatedTasks = tasks.map(task => {
@@ -101,6 +104,19 @@ const App = () => {
     setTasks(updatedTasks)
   }
 
+  const filterdTasks = () => {
+    switch (filterSetting) {
+      case 'all':
+        return tasks
+      case 'completed':
+        return tasks.filter(task => Boolean(task.completed))
+      case 'active':
+        return tasks.filter(task => !Boolean(task.completed))
+      default:
+        return tasks
+    }
+  }
+
   return (
     <>
       <div id="button-group-container"
@@ -112,18 +128,32 @@ const App = () => {
         }}
       >
         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
-          <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)}>
-            <AddIcon />
-          </IconButton>
-          <IconButton id="completed-tasks" onClick={() => { }}>
-            <CheckIcon />
-          </IconButton>
-          <IconButton id="all-tasks" onClick={() => { }}>
-            <AllInclusiveIcon />
-          </IconButton>
+          <Tooltip title="Add a task">
+            <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)}>
+              <AddIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Completed tasks">
+            <IconButton id="completed-tasks" onClick={() => setFilterSetting('completed')}>
+              <CheckIcon color='primary' />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Active tasks">
+            <IconButton id="active-tasks" onClick={() => setFilterSetting('active')}>
+              <NotificationImportantIcon color='error' />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="All tasks">
+            <IconButton id="all-tasks" onClick={() => setFilterSetting('all')}>
+              <AllInclusiveIcon color='success' />
+            </IconButton>
+          </Tooltip>
         </ButtonGroup>
       </div>
-      {tasks.length ?
+      {filterdTasks().length ?
         <TableContainer component={Paper} sx={{ maxWidth: 700, margin: '0 auto' }}>
           <Table aria-label="collapsible table">
             <TableHead>
@@ -135,7 +165,7 @@ const App = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {tasks.map((task) => (
+              {filterdTasks().map((task) => (
                 <Row key={task.id} row={task} onCompleteTask={handleTaskCompletion} onDeleteTask={handleTaskDeletion} />
               ))}
             </TableBody>

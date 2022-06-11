@@ -22,24 +22,52 @@ exports[`App renders table 1`] = `
       }
       variant="contained"
     >
-      <ForwardRef(IconButton)
-        id="add-task"
-        onClick={[Function]}
+      <ForwardRef(Tooltip)
+        title="Add a task"
       >
-        <Memo(ForwardRef(AddIcon)) />
-      </ForwardRef(IconButton)>
-      <ForwardRef(IconButton)
-        id="completed-tasks"
-        onClick={[Function]}
+        <ForwardRef(IconButton)
+          id="add-task"
+          onClick={[Function]}
+        >
+          <Memo(ForwardRef(AddIcon)) />
+        </ForwardRef(IconButton)>
+      </ForwardRef(Tooltip)>
+      <ForwardRef(Tooltip)
+        title="Completed tasks"
       >
-        <Memo(ForwardRef(CheckIcon)) />
-      </ForwardRef(IconButton)>
-      <ForwardRef(IconButton)
-        id="all-tasks"
-        onClick={[Function]}
+        <ForwardRef(IconButton)
+          id="completed-tasks"
+          onClick={[Function]}
+        >
+          <Memo(ForwardRef(CheckIcon))
+            color="primary"
+          />
+        </ForwardRef(IconButton)>
+      </ForwardRef(Tooltip)>
+      <ForwardRef(Tooltip)
+        title="Active tasks"
       >
-        <Memo(ForwardRef(AllInclusiveIcon)) />
-      </ForwardRef(IconButton)>
+        <ForwardRef(IconButton)
+          id="active-tasks"
+          onClick={[Function]}
+        >
+          <Memo(ForwardRef(NotificationImportantIcon))
+            color="error"
+          />
+        </ForwardRef(IconButton)>
+      </ForwardRef(Tooltip)>
+      <ForwardRef(Tooltip)
+        title="All tasks"
+      >
+        <ForwardRef(IconButton)
+          id="all-tasks"
+          onClick={[Function]}
+        >
+          <Memo(ForwardRef(AllInclusiveIcon))
+            color="success"
+          />
+        </ForwardRef(IconButton)>
+      </ForwardRef(Tooltip)>
     </ForwardRef(ButtonGroup)>
   </div>
   <ForwardRef(TableContainer)

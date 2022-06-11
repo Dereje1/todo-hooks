@@ -58,6 +58,29 @@ describe('App', () => {
     row = wrapper.find('Row').at(1)
     expect(row.props().row.id).toBe("3");
   })
+  test('Will filter completed tasks', () => {
+    const wrapper = shallow(<App />);
+    let rows = wrapper.find('Row')
+    expect(rows.length).toBe(3);
+    let row = rows.at(1)
+    row.props().onCompleteTask({ target: { id: '2' } });
+    const filterCompletedTasksButton = wrapper.find({ id: "completed-tasks" })
+    filterCompletedTasksButton.props().onClick()
+    rows = wrapper.find('Row')
+    expect(rows.length).toBe(1);
+  })
+
+  test('Will filter active tasks', () => {
+    const wrapper = shallow(<App />);
+    let rows = wrapper.find('Row')
+    expect(rows.length).toBe(3);
+    let row = rows.at(1)
+    row.props().onCompleteTask({ target: { id: '2' } });
+    const filterActiveTasksButton = wrapper.find({ id: "active-tasks" })
+    filterActiveTasksButton.props().onClick()
+    rows = wrapper.find('Row')
+    expect(rows.length).toBe(2);
+  })
 })
 
 describe('rows', () => {
