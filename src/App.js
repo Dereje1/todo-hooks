@@ -20,9 +20,10 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
 import CheckIcon from '@mui/icons-material/Check';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 export const Row = (props) => {
-  const { row, onCompleteTask } = props;
+  const { row, onCompleteTask, onDeleteTask } = props;
   const [open, setOpen] = useState(false);
   return (
     <Fragment>
@@ -49,6 +50,11 @@ export const Row = (props) => {
             }}
             id={row.id}
           />
+        </TableCell>
+        <TableCell padding="checkbox" align='center'>
+          <IconButton id="delete-task" onClick={() => onDeleteTask(row.id)}>
+            <DeleteForeverIcon color='error' sx={{fontSize: '1.3em'}}/>
+          </IconButton>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -90,6 +96,11 @@ const App = () => {
     setOpenTaskDialog(false)
   }
 
+  const handleTaskDeletion = (taskId) => {
+    const updatedTasks = tasks.filter(task => task.id !== taskId)
+    setTasks(updatedTasks)
+  }
+
   return (
     <>
       <div id="button-group-container"
@@ -100,7 +111,7 @@ const App = () => {
           marginBottom: 10,
         }}
       >
-        <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{padding: 1}}>
+        <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
           <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)}>
             <AddIcon />
           </IconButton>
@@ -112,23 +123,27 @@ const App = () => {
           </IconButton>
         </ButtonGroup>
       </div>
-
-      <TableContainer component={Paper} sx={{ maxWidth: 1000, margin: '0 auto' }}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell />
-              <TableCell >Completed</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {tasks.map((task) => (
-              <Row key={task.id} row={task} onCompleteTask={handleTaskCompletion} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {tasks.length ?
+        <TableContainer component={Paper} sx={{ maxWidth: 700, margin: '0 auto' }}>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell />
+                <TableCell >Completed</TableCell>
+                <TableCell >Delete</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tasks.map((task) => (
+                <Row key={task.id} row={task} onCompleteTask={handleTaskCompletion} onDeleteTask={handleTaskDeletion} />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        :
+        null
+      }
       {openTaskDialog && <TaskDialog
         open={openTaskDialog}
         handleCancel={() => setOpenTaskDialog(false)}

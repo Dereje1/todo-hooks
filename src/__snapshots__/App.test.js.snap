@@ -62,7 +62,7 @@ exports[`App renders table 1`] = `
     sx={
       Object {
         "margin": "0 auto",
-        "maxWidth": 1000,
+        "maxWidth": 700,
       }
     }
   >
@@ -76,12 +76,16 @@ exports[`App renders table 1`] = `
           <ForwardRef(TableCell)>
             Completed
           </ForwardRef(TableCell)>
+          <ForwardRef(TableCell)>
+            Delete
+          </ForwardRef(TableCell)>
         </ForwardRef(TableRow)>
       </ForwardRef(TableHead)>
       <ForwardRef(TableBody)>
         <Row
           key="1"
           onCompleteTask={[Function]}
+          onDeleteTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -94,6 +98,7 @@ exports[`App renders table 1`] = `
         <Row
           key="2"
           onCompleteTask={[Function]}
+          onDeleteTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -106,6 +111,7 @@ exports[`App renders table 1`] = `
         <Row
           key="3"
           onCompleteTask={[Function]}
+          onDeleteTask={[Function]}
           row={
             Object {
               "completed": false,
@@ -162,6 +168,24 @@ exports[`rows renders row 1`] = `
         }
         onChange={[MockFunction]}
       />
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(IconButton)
+        id="delete-task"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(DeleteForeverIcon))
+          color="error"
+          sx={
+            Object {
+              "fontSize": "1.3em",
+            }
+          }
+        />
+      </ForwardRef(IconButton)>
     </ForwardRef(TableCell)>
   </ForwardRef(TableRow)>
   <ForwardRef(TableRow)>

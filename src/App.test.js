@@ -50,6 +50,14 @@ describe('App', () => {
       id: expect.any(String)
     })
   })
+  test('Will delete a task', () => {
+    const wrapper = shallow(<App />);
+    let row = wrapper.find('Row').at(1)
+    expect(row.props().row.id).toBe("2");
+    row.props().onDeleteTask("2");
+    row = wrapper.find('Row').at(1)
+    expect(row.props().row.id).toBe("3");
+  })
 })
 
 describe('rows', () => {
