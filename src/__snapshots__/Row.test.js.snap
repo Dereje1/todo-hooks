@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rows renders row 1`] = `
+<Fragment>
+  <ForwardRef(TableRow)
+    sx={
+      Object {
+        "& > *": Object {
+          "borderBottom": "unset",
+        },
+      }
+    }
+  >
+    <ForwardRef(TableCell)>
+      <ForwardRef(IconButton)
+        aria-label="expand row"
+        onClick={[Function]}
+        size="small"
+      >
+        <Memo(ForwardRef(KeyboardArrowDownIcon)) />
+      </ForwardRef(IconButton)>
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      component="th"
+      scope="row"
+    >
+      Task 1
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(IconButton)
+        id="edit-task"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(EditIcon))
+          color="success"
+          sx={
+            Object {
+              "fontSize": "1.3em",
+            }
+          }
+        />
+      </ForwardRef(IconButton)>
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(Checkbox)
+        checked={false}
+        color="primary"
+        id="1"
+        inputProps={
+          Object {
+            "aria-label": "mark complete",
+          }
+        }
+        onChange={[MockFunction]}
+      />
+    </ForwardRef(TableCell)>
+    <ForwardRef(TableCell)
+      align="center"
+      padding="checkbox"
+    >
+      <ForwardRef(IconButton)
+        id="delete-task"
+        onClick={[Function]}
+      >
+        <Memo(ForwardRef(DeleteForeverIcon))
+          color="error"
+          sx={
+            Object {
+              "fontSize": "1.3em",
+            }
+          }
+        />
+      </ForwardRef(IconButton)>
+    </ForwardRef(TableCell)>
+  </ForwardRef(TableRow)>
+  <ForwardRef(TableRow)>
+    <ForwardRef(TableCell)
+      colSpan={6}
+      style={
+        Object {
+          "paddingBottom": 0,
+          "paddingTop": 0,
+        }
+      }
+    >
+      <ForwardRef(Collapse)
+        in={false}
+        timeout="auto"
+        unmountOnExit={true}
+      >
+        <ForwardRef(TextField)
+          defaultValue="This is task # 1"
+          disabled={true}
+          fullWidth={true}
+          id="description"
+          label="Description"
+          margin="dense"
+          multiline={true}
+          sx={
+            Object {
+              "& .MuiInput-underline:before": Object {
+                "borderBottomColor": "white",
+              },
+              "& .MuiInputBase-input.Mui-disabled": Object {
+                "WebkitTextFillColor": "#6e6b6b",
+              },
+            }
+          }
+          type="text"
+          variant="standard"
+        />
+      </ForwardRef(Collapse)>
+    </ForwardRef(TableCell)>
+  </ForwardRef(TableRow)>
+</Fragment>
+`;
