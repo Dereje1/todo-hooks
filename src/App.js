@@ -161,25 +161,41 @@ const App = () => {
       >
         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
           <Tooltip title="Add a task">
-            <IconButton id="add-task" onClick={() => setOpenTaskDialog(true)} variant="outlined">
+            <IconButton 
+            id="add-task" 
+            onClick={() => setOpenTaskDialog(true)}
+            sx={{margin: 1}}
+            >
               <AddIcon />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Completed tasks">
-            <IconButton id="completed-tasks" onClick={() => setFilterSetting('completed')}>
+            <IconButton
+              id="completed-tasks"
+              onClick={() => setFilterSetting('completed')}
+              sx={{ border: filterSetting === 'completed' ? '.5px solid black' : '', margin: 1 }}
+            >
               <CheckIcon color='primary' />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="Active tasks">
-            <IconButton id="active-tasks" onClick={() => setFilterSetting('active')}>
+            <IconButton
+              id="active-tasks"
+              onClick={() => setFilterSetting('active')}
+              sx={{ border: filterSetting === 'active' ? '.5px solid black' : '', margin: 1  }}
+            >
               <NotificationImportantIcon color='error' />
             </IconButton>
           </Tooltip>
 
           <Tooltip title="All tasks">
-            <IconButton id="all-tasks" onClick={() => setFilterSetting('all')}>
+            <IconButton
+              id="all-tasks"
+              onClick={() => setFilterSetting('all')}
+              sx={{ border: filterSetting === 'all' ? '.5px solid black' : '', margin: 1  }}
+            >
               <AllInclusiveIcon color='success' />
             </IconButton>
           </Tooltip>

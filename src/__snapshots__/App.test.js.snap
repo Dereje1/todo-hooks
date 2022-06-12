@@ -28,7 +28,11 @@ exports[`App renders table 1`] = `
         <ForwardRef(IconButton)
           id="add-task"
           onClick={[Function]}
-          variant="outlined"
+          sx={
+            Object {
+              "margin": 1,
+            }
+          }
         >
           <Memo(ForwardRef(AddIcon)) />
         </ForwardRef(IconButton)>
@@ -39,6 +43,12 @@ exports[`App renders table 1`] = `
         <ForwardRef(IconButton)
           id="completed-tasks"
           onClick={[Function]}
+          sx={
+            Object {
+              "border": "",
+              "margin": 1,
+            }
+          }
         >
           <Memo(ForwardRef(CheckIcon))
             color="primary"
@@ -51,6 +61,12 @@ exports[`App renders table 1`] = `
         <ForwardRef(IconButton)
           id="active-tasks"
           onClick={[Function]}
+          sx={
+            Object {
+              "border": "",
+              "margin": 1,
+            }
+          }
         >
           <Memo(ForwardRef(NotificationImportantIcon))
             color="error"
@@ -63,6 +79,12 @@ exports[`App renders table 1`] = `
         <ForwardRef(IconButton)
           id="all-tasks"
           onClick={[Function]}
+          sx={
+            Object {
+              "border": ".5px solid black",
+              "margin": 1,
+            }
+          }
         >
           <Memo(ForwardRef(AllInclusiveIcon))
             color="success"
