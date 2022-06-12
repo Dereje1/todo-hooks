@@ -27,6 +27,7 @@ exports[`will render 1`] = `
       label="Name"
       margin="dense"
       onChange={[Function]}
+      required={true}
       type="text"
       value=""
       variant="standard"
@@ -37,10 +38,12 @@ exports[`will render 1`] = `
       id="description"
       label="Description"
       margin="dense"
+      multiline={true}
       onChange={[Function]}
+      rows={4}
       type="text"
       value=""
-      variant="standard"
+      variant="filled"
     />
   </ForwardRef(DialogContent)>
   <ForwardRef(DialogActions)>

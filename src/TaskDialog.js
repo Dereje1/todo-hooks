@@ -36,6 +36,7 @@ const TaskDialog = ({
                     type="text"
                     fullWidth
                     variant="standard"
+                    required
                     value={name}
                     onChange={({ target: { value } }) => setTaskName(value)}
                 />
@@ -46,7 +47,9 @@ const TaskDialog = ({
                     label="Description"
                     type="text"
                     fullWidth
-                    variant="standard"
+                    variant="filled"
+                    multiline
+                    rows={4}
                     value={description}
                     onChange={({ target: { value } }) => setTaskDescription(value)}
                 />

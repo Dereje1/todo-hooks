@@ -141,6 +141,7 @@ exports[`App renders table 1`] = `
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
           onEditTask={[Function]}
+          openTaskDialog={false}
           row={
             Object {
               "completed": false,
@@ -155,6 +156,7 @@ exports[`App renders table 1`] = `
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
           onEditTask={[Function]}
+          openTaskDialog={false}
           row={
             Object {
               "completed": false,
@@ -169,6 +171,7 @@ exports[`App renders table 1`] = `
           onCompleteTask={[Function]}
           onDeleteTask={[Function]}
           onEditTask={[Function]}
+          openTaskDialog={false}
           row={
             Object {
               "completed": false,
@@ -278,15 +281,27 @@ exports[`rows renders row 1`] = `
         timeout="auto"
         unmountOnExit={true}
       >
-        <ForwardRef(Box)
+        <ForwardRef(TextField)
+          defaultValue="This is task # 1"
+          disabled={true}
+          fullWidth={true}
+          id="description"
+          label="Description"
+          margin="dense"
+          multiline={true}
           sx={
             Object {
-              "margin": 1,
+              "& .MuiInput-underline:before": Object {
+                "borderBottomColor": "white",
+              },
+              "& .MuiInputBase-input.Mui-disabled": Object {
+                "WebkitTextFillColor": "#6e6b6b",
+              },
             }
           }
-        >
-          This is task # 1
-        </ForwardRef(Box)>
+          type="text"
+          variant="standard"
+        />
       </ForwardRef(Collapse)>
     </ForwardRef(TableCell)>
   </ForwardRef(TableRow)>

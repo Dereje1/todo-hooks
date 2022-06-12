@@ -24,12 +24,14 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
 import Tooltip from '@mui/material/Tooltip';
 import EditIcon from '@mui/icons-material/Edit';
+import TextField from '@mui/material/TextField';
 
 export const Row = ({
   row,
   onCompleteTask,
   onDeleteTask,
-  onEditTask
+  onEditTask,
+  openTaskDialog
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -71,10 +73,24 @@ export const Row = ({
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              {row.description}
-            </Box>
+          <Collapse in={open && !openTaskDialog} timeout="auto" unmountOnExit>
+            <TextField
+              margin="dense"
+              id="description"
+              label="Description"
+              type="text"
+              fullWidth
+              variant="standard"
+              multiline
+              defaultValue={row.description}
+              disabled
+              sx={{
+                "& .MuiInputBase-input.Mui-disabled": {
+                  WebkitTextFillColor: "#6e6b6b",
+                },
+                '& .MuiInput-underline:before': { borderBottomColor: 'white' },
+              }}
+            />
           </Collapse>
         </TableCell>
       </TableRow>
@@ -161,10 +177,10 @@ const App = () => {
       >
         <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
           <Tooltip title="Add a task">
-            <IconButton 
-            id="add-task" 
-            onClick={() => setOpenTaskDialog(true)}
-            sx={{margin: 1}}
+            <IconButton
+              id="add-task"
+              onClick={() => setOpenTaskDialog(true)}
+              sx={{ margin: 1 }}
             >
               <AddIcon />
             </IconButton>
@@ -184,7 +200,7 @@ const App = () => {
             <IconButton
               id="active-tasks"
               onClick={() => setFilterSetting('active')}
-              sx={{ border: filterSetting === 'active' ? '.5px solid black' : '', margin: 1  }}
+              sx={{ border: filterSetting === 'active' ? '.5px solid black' : '', margin: 1 }}
             >
               <NotificationImportantIcon color='error' />
             </IconButton>
@@ -194,7 +210,7 @@ const App = () => {
             <IconButton
               id="all-tasks"
               onClick={() => setFilterSetting('all')}
-              sx={{ border: filterSetting === 'all' ? '.5px solid black' : '', margin: 1  }}
+              sx={{ border: filterSetting === 'all' ? '.5px solid black' : '', margin: 1 }}
             >
               <AllInclusiveIcon color='success' />
             </IconButton>
@@ -221,6 +237,7 @@ const App = () => {
                   onEditTask={handleTaskEdit}
                   onCompleteTask={handleTaskCompletion}
                   onDeleteTask={handleTaskDeletion}
+                  openTaskDialog={openTaskDialog}
                 />
               ))}
             </TableBody>
