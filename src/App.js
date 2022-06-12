@@ -2,9 +2,9 @@ import './App.css';
 import React, { Fragment, useState } from 'react';
 import taskListStub from './taskliststub';
 import Row from './Row';
+import Controls from './Controls';
 import TaskDialog from './TaskDialog';
 /* MUI */
-import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -12,12 +12,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import AddIcon from '@mui/icons-material/Add';
-import CheckIcon from '@mui/icons-material/Check';
-import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
-import NotificationImportantIcon from '@mui/icons-material/NotificationImportant';
-import Tooltip from '@mui/material/Tooltip';
 
 const App = () => {
   const [tasks, setTasks] = useState(taskListStub);
@@ -96,47 +90,11 @@ const App = () => {
           marginBottom: 10,
         }}
       >
-        <ButtonGroup variant="contained" aria-label="outlined primary button group" sx={{ padding: 1 }}>
-          <Tooltip title="Add a task">
-            <IconButton
-              id="add-task"
-              onClick={() => setOpenTaskDialog(true)}
-              sx={{ margin: 1 }}
-            >
-              <AddIcon />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="Completed tasks">
-            <IconButton
-              id="completed-tasks"
-              onClick={() => setFilterSetting('completed')}
-              sx={{ border: filterSetting === 'completed' ? '.5px solid black' : '', margin: 1 }}
-            >
-              <CheckIcon color='primary' />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="Active tasks">
-            <IconButton
-              id="active-tasks"
-              onClick={() => setFilterSetting('active')}
-              sx={{ border: filterSetting === 'active' ? '.5px solid black' : '', margin: 1 }}
-            >
-              <NotificationImportantIcon color='error' />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="All tasks">
-            <IconButton
-              id="all-tasks"
-              onClick={() => setFilterSetting('all')}
-              sx={{ border: filterSetting === 'all' ? '.5px solid black' : '', margin: 1 }}
-            >
-              <AllInclusiveIcon color='success' />
-            </IconButton>
-          </Tooltip>
-        </ButtonGroup>
+      <Controls
+        setOpenTaskDialog={() => setOpenTaskDialog(true)}
+        setFilterSetting={setFilterSetting}
+        filterSetting={filterSetting}
+      />
       </div>
       {filterdTasks().length ?
         <TableContainer component={Paper} sx={{ maxWidth: 700, margin: '0 auto' }}>
@@ -179,7 +137,5 @@ const App = () => {
     </>
   )
 }
-
-
 
 export default App;

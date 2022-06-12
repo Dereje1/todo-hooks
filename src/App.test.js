@@ -20,15 +20,15 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     let taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(true);
-    const addTaskButton = wrapper.find({ id: "add-task" })
-    addTaskButton.props().onClick()
+    const controls = wrapper.find('Controls')
+    controls.props().setOpenTaskDialog()
     taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(false);
   })
   test('Will hide the task dialog', () => {
     const wrapper = shallow(<App />);
-    const addTaskButton = wrapper.find({ id: "add-task" })
-    addTaskButton.props().onClick()
+    const controls = wrapper.find('Controls')
+    controls.props().setOpenTaskDialog()
     let taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(false);
     taskDialog.props().handleCancel()
@@ -37,8 +37,8 @@ describe('App', () => {
   })
   test('Will add a task', () => {
     const wrapper = shallow(<App />);
-    const addTaskButton = wrapper.find({ id: "add-task" })
-    addTaskButton.props().onClick()
+    const controls = wrapper.find('Controls')
+    controls.props().setOpenTaskDialog()
     let taskDialog = wrapper.find('TaskDialog')
     taskDialog.props().handleOk({ name: 'stub task', description: 'stub description' }, null)
     const rows = wrapper.find('Row')
@@ -78,8 +78,8 @@ describe('App', () => {
     expect(rows.length).toBe(3);
     let row = rows.at(1)
     row.props().onCompleteTask({ target: { id: '2' } });
-    const filterCompletedTasksButton = wrapper.find({ id: "completed-tasks" })
-    filterCompletedTasksButton.props().onClick()
+    const controls = wrapper.find('Controls')
+    controls.props().setFilterSetting('completed')
     rows = wrapper.find('Row')
     expect(rows.length).toBe(1);
   })
@@ -90,8 +90,8 @@ describe('App', () => {
     expect(rows.length).toBe(3);
     let row = rows.at(1)
     row.props().onCompleteTask({ target: { id: '2' } });
-    const filterActiveTasksButton = wrapper.find({ id: "active-tasks" })
-    filterActiveTasksButton.props().onClick()
+    const controls = wrapper.find('Controls')
+    controls.props().setFilterSetting('active')
     rows = wrapper.find('Row')
     expect(rows.length).toBe(2);
   })
