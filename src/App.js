@@ -1,9 +1,9 @@
 import './App.css';
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import taskListStub from './taskliststub';
-import Row from './Row';
-import Controls from './Controls';
-import TaskDialog from './TaskDialog';
+import Row from './components/Row';
+import Controls from './components/Controls';
+import TaskDialog from './components/TaskDialog';
 /* MUI */
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -82,20 +82,11 @@ const App = () => {
 
   return (
     <>
-      <div id="button-group-container"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: 10,
-          marginBottom: 10,
-        }}
-      >
       <Controls
         setOpenTaskDialog={() => setOpenTaskDialog(true)}
         setFilterSetting={setFilterSetting}
         filterSetting={filterSetting}
       />
-      </div>
       {filterdTasks().length ?
         <TableContainer component={Paper} sx={{ maxWidth: 700, margin: '0 auto' }}>
           <Table aria-label="collapsible table">

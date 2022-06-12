@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`will render 1`] = `
+<div
+  id="button-group-container"
+  style={
+    Object {
+      "display": "flex",
+      "justifyContent": "center",
+      "marginBottom": 10,
+      "marginTop": 10,
+    }
+  }
+>
+  <ForwardRef(ButtonGroup)
+    aria-label="outlined primary button group"
+    sx={
+      Object {
+        "padding": 1,
+      }
+    }
+    variant="contained"
+  >
+    <ForwardRef(Tooltip)
+      title="Add a task"
+    >
+      <ForwardRef(IconButton)
+        id="add-task"
+        onClick={[MockFunction]}
+        sx={
+          Object {
+            "margin": 1,
+          }
+        }
+      >
+        <Memo(ForwardRef(AddIcon)) />
+      </ForwardRef(IconButton)>
+    </ForwardRef(Tooltip)>
+    <ForwardRef(Tooltip)
+      title="Completed tasks"
+    >
+      <ForwardRef(IconButton)
+        id="completed-tasks"
+        onClick={[Function]}
+        sx={
+          Object {
+            "border": "",
+            "margin": 1,
+          }
+        }
+      >
+        <Memo(ForwardRef(CheckIcon))
+          color="primary"
+        />
+      </ForwardRef(IconButton)>
+    </ForwardRef(Tooltip)>
+    <ForwardRef(Tooltip)
+      title="Active tasks"
+    >
+      <ForwardRef(IconButton)
+        id="active-tasks"
+        onClick={[Function]}
+        sx={
+          Object {
+            "border": "",
+            "margin": 1,
+          }
+        }
+      >
+        <Memo(ForwardRef(NotificationImportantIcon))
+          color="error"
+        />
+      </ForwardRef(IconButton)>
+    </ForwardRef(Tooltip)>
+    <ForwardRef(Tooltip)
+      title="All tasks"
+    >
+      <ForwardRef(IconButton)
+        id="all-tasks"
+        onClick={[Function]}
+        sx={
+          Object {
+            "border": ".5px solid black",
+            "margin": 1,
+          }
+        }
+      >
+        <Memo(ForwardRef(AllInclusiveIcon))
+          color="success"
+        />
+      </ForwardRef(IconButton)>
+    </ForwardRef(Tooltip)>
+  </ForwardRef(ButtonGroup)>
+</div>
+`;

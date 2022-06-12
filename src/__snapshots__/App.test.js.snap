@@ -2,23 +2,11 @@
 
 exports[`App renders table 1`] = `
 <Fragment>
-  <div
-    id="button-group-container"
-    style={
-      Object {
-        "display": "flex",
-        "justifyContent": "center",
-        "marginBottom": 10,
-        "marginTop": 10,
-      }
-    }
-  >
-    <Controls
-      filterSetting="all"
-      setFilterSetting={[Function]}
-      setOpenTaskDialog={[Function]}
-    />
-  </div>
+  <Controls
+    filterSetting="all"
+    setFilterSetting={[Function]}
+    setOpenTaskDialog={[Function]}
+  />
   <ForwardRef(TableContainer)
     component={
       Object {
