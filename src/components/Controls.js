@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+/* MUI */
 import IconButton from '@mui/material/IconButton';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
@@ -65,3 +67,9 @@ const Controls = ({
 )
 
 export default Controls;
+
+Controls.propTypes = {
+    setOpenTaskDialog: PropTypes.func.isRequired,
+    setFilterSetting: PropTypes.func.isRequired,
+    filterSetting: PropTypes.string.isRequired
+}

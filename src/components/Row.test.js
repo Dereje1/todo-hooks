@@ -13,7 +13,10 @@ describe('rows', () => {
                 completed: false,
                 description: "This is task # 1"
             },
-            onCompleteTask: jest.fn()
+            onCompleteTask: jest.fn(),
+            onDeleteTask: jest.fn(),
+            onEditTask: jest.fn(),
+            openTaskDialog: false
         }
     })
     afterEach(() => {

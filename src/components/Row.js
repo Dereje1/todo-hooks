@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import PropTypes from "prop-types";
 /* MUI */
 import Collapse from '@mui/material/Collapse';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -84,3 +85,11 @@ const Row = ({
 }
 
 export default Row;
+
+Row.propTypes={
+    row:PropTypes.object.isRequired,
+    onCompleteTask: PropTypes.func.isRequired,
+    onDeleteTask: PropTypes.func.isRequired,
+    onEditTask: PropTypes.func.isRequired,
+    openTaskDialog: PropTypes.bool.isRequired
+}

@@ -47,6 +47,7 @@ describe('App', () => {
     expect(newTask.props().row).toStrictEqual({
       name: 'stub task',
       description: 'stub description',
+      completed: false,
       id: expect.any(String)
     })
   })

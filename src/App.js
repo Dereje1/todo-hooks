@@ -20,15 +20,15 @@ const App = () => {
   const [editableTask, setEditableTask] = useState(null);
 
   const handleTaskCompletion = ({ target: { id } }) => {
-    const updatedTasks = tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-          completed: !task.completed
-        }
-      }
-      return task
-    })
+    const indexToUpdate = tasks.findIndex(task => task.id === id)
+    const updatedTasks = [
+      ...tasks.slice(0, indexToUpdate),
+      {
+        ...tasks[indexToUpdate],
+        completed: !tasks[indexToUpdate].completed
+      },
+      ...tasks.slice(indexToUpdate + 1)
+    ]
     setTasks(updatedTasks);
   }
 
@@ -48,6 +48,7 @@ const App = () => {
     } else {
       updatedTasks = [...tasks, {
         ...val,
+        completed: false,
         id: Date.now().toString()
       }]
     }

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
+/* MUI */
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -66,3 +68,10 @@ const TaskDialog = ({
 };
 
 export default TaskDialog;
+
+TaskDialog.propTypes = {
+    handleCancel: PropTypes.func.isRequired,
+    handleOk: PropTypes.func.isRequired,
+    open: PropTypes.bool.isRequired,
+    editableTask: PropTypes.object
+}
