@@ -20,7 +20,7 @@ test('will set the filter status to complete',()=>{
     let completedButton = wrapper.find({id: 'completed-tasks'})
     completedButton.props().onClick();
     expect(props.setFilterSetting).toHaveBeenCalledWith('completed')
-    expect(completedButton.props().sx.border).toBe('.5px solid black')
+    expect(completedButton.props().sx.background).toBe('#e8e6e6')
 })
 
 test('will set the filter status to active',()=>{
@@ -29,7 +29,7 @@ test('will set the filter status to active',()=>{
     const activeButton = wrapper.find({id: 'active-tasks'})
     activeButton.props().onClick();
     expect(props.setFilterSetting).toHaveBeenCalledWith('active')
-    expect(activeButton.props().sx.border).toBe('.5px solid black')
+    expect(activeButton.props().sx.background).toBe('#e8e6e6')
 })
 
 test('will set the filter status to all',()=>{
@@ -38,5 +38,5 @@ test('will set the filter status to all',()=>{
     const allButton = wrapper.find({id: 'all-tasks'})
     allButton.props().onClick();
     expect(props.setFilterSetting).toHaveBeenCalledWith('all')
-    expect(allButton.props().sx.border).toBe('.5px solid black')
+    expect(allButton.props().sx.background).toBe('#e8e6e6')
 })

@@ -37,7 +37,7 @@ const Controls = ({
                 <IconButton
                     id="completed-tasks"
                     onClick={() => setFilterSetting('completed')}
-                    sx={{ border: filterSetting === 'completed' ? '.5px solid black' : '', margin: 1 }}
+                    sx={{ background: filterSetting === 'completed' ? '#e8e6e6' : '', margin: 1 }}
                 >
                     <CheckIcon color='primary' />
                 </IconButton>
@@ -47,7 +47,7 @@ const Controls = ({
                 <IconButton
                     id="active-tasks"
                     onClick={() => setFilterSetting('active')}
-                    sx={{ border: filterSetting === 'active' ? '.5px solid black' : '', margin: 1 }}
+                    sx={{ background: filterSetting === 'active' ? '#e8e6e6' : '', margin: 1 }}
                 >
                     <NotificationImportantIcon color='error' />
                 </IconButton>
@@ -57,7 +57,7 @@ const Controls = ({
                 <IconButton
                     id="all-tasks"
                     onClick={() => setFilterSetting('all')}
-                    sx={{ border: filterSetting === 'all' ? '.5px solid black' : '', margin: 1 }}
+                    sx={{ background: filterSetting === 'all' ? '#e8e6e6' : '', margin: 1 }}
                 >
                     <AllInclusiveIcon color='success' />
                 </IconButton>
