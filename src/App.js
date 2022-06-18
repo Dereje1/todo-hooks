@@ -84,7 +84,7 @@ const App = () => {
   return (
     <>
       <Controls
-        setOpenTaskDialog={() => setOpenTaskDialog(true)}
+        setOpenTaskDialog={setOpenTaskDialog}
         setFilterSetting={setFilterSetting}
         filterSetting={filterSetting}
       />
@@ -117,15 +117,18 @@ const App = () => {
         :
         null
       }
-      {openTaskDialog && <TaskDialog
-        open={openTaskDialog}
-        handleCancel={() => {
-          setOpenTaskDialog(false)
-          setEditableTask(null)
-        }}
-        handleOk={handleTaskAddOrEdit}
-        editableTask={editableTask}
-      />}
+      {
+        openTaskDialog &&
+        <TaskDialog
+          open={openTaskDialog}
+          handleCancel={() => {
+            setOpenTaskDialog(false)
+            setEditableTask(null)
+          }}
+          handleOk={handleTaskAddOrEdit}
+          editableTask={editableTask}
+        />
+      }
     </>
   )
 }

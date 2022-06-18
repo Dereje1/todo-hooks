@@ -26,7 +26,7 @@ exports[`will render 1`] = `
     >
       <ForwardRef(IconButton)
         id="add-task"
-        onClick={[MockFunction]}
+        onClick={[Function]}
         sx={
           Object {
             "margin": 1,

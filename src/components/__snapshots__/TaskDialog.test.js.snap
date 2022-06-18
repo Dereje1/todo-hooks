@@ -22,6 +22,7 @@ exports[`will render 1`] = `
     </ForwardRef(DialogContentText)>
     <ForwardRef(TextField)
       autoFocus={true}
+      error={true}
       fullWidth={true}
       id="name"
       label="Name"
@@ -54,6 +55,7 @@ exports[`will render 1`] = `
       Cancel
     </ForwardRef(Button)>
     <ForwardRef(Button)
+      disabled={true}
       onClick={[Function]}
     >
       Ok

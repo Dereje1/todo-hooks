@@ -26,7 +26,7 @@ const Controls = ({
             <Tooltip title="Add a task">
                 <IconButton
                     id="add-task"
-                    onClick={setOpenTaskDialog}
+                    onClick={() => setOpenTaskDialog(true)}
                     sx={{ margin: 1 }}
                 >
                     <AddIcon />

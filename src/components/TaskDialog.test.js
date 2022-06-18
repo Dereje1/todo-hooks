@@ -15,13 +15,19 @@ test('will render', () => {
     expect(toJson(wrapper)).toMatchSnapshot();
 })
 
-test('will control the name field', () => {
+test('will control the name field and set validation', () => {
     const wrapper = shallow(<TaskDialog {...props} />)
     let nameField = wrapper.find({ id: 'name' })
     expect(nameField.props().value).toBe('')
     nameField.props().onChange({ target: { value: 'stub-name' } })
     nameField = wrapper.find({ id: 'name' })
     expect(nameField.props().value).toBe('stub-name')
+    expect(nameField.props().error).toBe(false)
+    // check for invalid name
+    nameField.props().onChange({ target: { value: 'stub' } })
+    nameField = wrapper.find({ id: 'name' })
+    expect(nameField.props().value).toBe('stub')
+    expect(nameField.props().error).toBe(true)
 })
 
 test('will control the description field', () => {
@@ -40,8 +46,17 @@ test('will send field values to parent on Ok click to Add a task', () => {
     nameField.props().onChange({ target: { value: 'stub-name' } })
     descriptionField.props().onChange({ target: { value: 'stub-description' } })
     const okButton = wrapper.find('ForwardRef(Button)').at(1)
+    expect(okButton.props().disabled).toBe(false);
     okButton.props().onClick();
     expect(props.handleOk).toHaveBeenCalledWith({ "description": "stub-description", "name": "stub-name" }, null)
+})
+
+test('will disable ok button if validation fails', () => {
+    const wrapper = shallow(<TaskDialog {...props} />)
+    let nameField = wrapper.find({ id: 'name' })
+    nameField.props().onChange({ target: { value: 'stub-name-that-is-too-long' } })
+    const okButton = wrapper.find('ForwardRef(Button)').at(1)
+    expect(okButton.props().disabled).toBe(true);
 })
 
 test('will send field values to parent on Ok click to modify a task', () => {
@@ -49,7 +64,7 @@ test('will send field values to parent on Ok click to modify a task', () => {
         ...props,
         editableTask: {
             "description": "stub-editable-description",
-            "name": "stub-editable- name",
+            "name": "stub-editable-name",
             id: "1"
         }
     }
@@ -62,6 +77,6 @@ test('will send field values to parent on Ok click to modify a task', () => {
     okButton.props().onClick();
     expect(props.handleOk).toHaveBeenCalledWith(
         { "description": "stub-edited-description", "name": "stub-edited-name" }, 
-        { "description": "stub-editable-description","name": "stub-editable- name",id: "1"}
+        { "description": "stub-editable-description","name": "stub-editable-name",id: "1"}
     )
 })

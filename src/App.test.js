@@ -21,14 +21,14 @@ describe('App', () => {
     let taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(true);
     const controls = wrapper.find('Controls')
-    controls.props().setOpenTaskDialog()
+    controls.props().setOpenTaskDialog(true)
     taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(false);
   })
   test('Will hide the task dialog', () => {
     const wrapper = shallow(<App />);
     const controls = wrapper.find('Controls')
-    controls.props().setOpenTaskDialog()
+    controls.props().setOpenTaskDialog(true)
     let taskDialog = wrapper.find('TaskDialog')
     expect(taskDialog.isEmptyRender()).toBe(false);
     taskDialog.props().handleCancel()
@@ -38,7 +38,7 @@ describe('App', () => {
   test('Will add a task', () => {
     const wrapper = shallow(<App />);
     const controls = wrapper.find('Controls')
-    controls.props().setOpenTaskDialog()
+    controls.props().setOpenTaskDialog(true)
     let taskDialog = wrapper.find('TaskDialog')
     taskDialog.props().handleOk({ name: 'stub task', description: 'stub description' }, null)
     const rows = wrapper.find('Row')
@@ -64,7 +64,7 @@ describe('App', () => {
     const editTaskButton = wrapper.find('Row').at(1)
     editTaskButton.props().onEditTask()
     let taskDialog = wrapper.find('TaskDialog')
-    taskDialog.props().handleOk({ name: 'stub-edited-task', description: 'stub-edited-description' }, {id: '2'})
+    taskDialog.props().handleOk({ name: 'stub-edited-task', description: 'stub-edited-description' }, { id: '2' })
     const rows = wrapper.find('Row')
     const editedTask = rows.at(1)
     expect(editedTask.props().row).toStrictEqual({

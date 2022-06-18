@@ -17,13 +17,14 @@ const TaskDialog = ({
 }) => {
     const [name, setTaskName] = useState(editableTask ? editableTask.name : '');
     const [description, setTaskDescription] = useState(editableTask ? editableTask.description : '');
+    const isValidName = name.trim().length >= 5 && name.trim().length <= 15;
     return (
         <Dialog
             sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 530 } }}
             maxWidth="xs"
             open={open}
         >
-            <DialogTitle>{editableTask ? `Edit- ${editableTask.name.slice(0,15)}...` : 'Add a Task'}</DialogTitle>
+            <DialogTitle>{editableTask ? `Edit- ${editableTask.name.slice(0, 15)}...` : 'Add a Task'}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
                     {
@@ -41,6 +42,7 @@ const TaskDialog = ({
                     required
                     value={name}
                     onChange={({ target: { value } }) => setTaskName(value)}
+                    error={!isValidName}
                 />
                 <TextField
                     autoFocus
@@ -60,7 +62,10 @@ const TaskDialog = ({
                 <Button autoFocus onClick={handleCancel}>
                     Cancel
                 </Button>
-                <Button onClick={() => handleOk({ name, description }, editableTask)}>Ok</Button>
+                <Button
+                    onClick={() => handleOk({ name, description }, editableTask)}
+                    disabled={!isValidName}
+                >Ok</Button>
             </DialogActions>
         </Dialog>
     )
