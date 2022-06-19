@@ -64,13 +64,13 @@ describe('App', () => {
     const editTaskButton = wrapper.find('Row').at(1)
     editTaskButton.props().onEditTask()
     let taskDialog = wrapper.find('TaskDialog')
-    taskDialog.props().handleOk({ name: 'stub-edited-task', description: 'stub-edited-description' }, { id: '2' })
+    taskDialog.props().handleOk({ name: 'stub-edited-task', description: 'stub-edited-description' }, { id: '3' })
     const rows = wrapper.find('Row')
     const editedTask = rows.at(1)
     expect(editedTask.props().row).toStrictEqual({
       name: 'stub-edited-task',
       description: 'stub-edited-description',
-      id: "2"
+      id: "3"
     })
   })
   test('Will filter completed tasks', () => {
@@ -78,7 +78,7 @@ describe('App', () => {
     let rows = wrapper.find('Row')
     expect(rows.length).toBe(3);
     let row = rows.at(1)
-    row.props().onCompleteTask({ target: { id: '2' } });
+    row.props().onCompleteTask({ target: { id: '3' } });
     const controls = wrapper.find('Controls')
     controls.props().setFilterSetting('completed')
     rows = wrapper.find('Row')
@@ -90,11 +90,11 @@ describe('App', () => {
     let rows = wrapper.find('Row')
     expect(rows.length).toBe(3);
     let row = rows.at(1)
-    row.props().onCompleteTask({ target: { id: '2' } });
+    row.props().onCompleteTask({ target: { id: '3' } });
     const controls = wrapper.find('Controls')
     controls.props().setFilterSetting('active')
     rows = wrapper.find('Row')
-    expect(rows.length).toBe(2);
+    expect(rows.length).toBe(3);
   })
 })
 

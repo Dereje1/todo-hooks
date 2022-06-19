@@ -47,7 +47,8 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "jest-react-hooks-shallow": "^1.5.1"
   },
   "homepage": "https://dereje1.github.io/todo-hooks/"
 }

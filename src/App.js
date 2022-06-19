@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import taskListStub from './taskliststub';
 import Row from './components/Row';
 import Controls from './components/Controls';
@@ -14,10 +14,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const App = () => {
-  const [tasks, setTasks] = useState(taskListStub);
+  const [tasks, setTasks] = useState(null);
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
   const [filterSetting, setFilterSetting] = useState('all');
   const [editableTask, setEditableTask] = useState(null);
+
+  useEffect(() => {
+    if (!tasks) {
+      const inLocalStorage = localStorage.getItem('todo');
+      if (!inLocalStorage) {
+        setTasks(taskListStub);
+      } else {
+        setTasks(JSON.parse(inLocalStorage));
+      }
+    } else {
+      localStorage.setItem('todo', JSON.stringify(tasks))
+    }
+  }, [tasks])
 
   const handleTaskCompletion = ({ target: { id } }) => {
     const indexToUpdate = tasks.findIndex(task => task.id === id)
@@ -80,6 +93,8 @@ const App = () => {
         return tasks
     }
   }
+
+  if (!tasks) return null;
 
   return (
     <>
